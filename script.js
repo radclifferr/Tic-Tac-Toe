@@ -2,6 +2,7 @@ const gridBox = document.querySelector(".grid-box");
 const userAlert = document.querySelector(".alert");
 const xChoice = document.getElementById("x");
 const oChoice = document.getElementById("o");
+const resetButton = document.getElementById("reset");
 const playerTwoChoiceReturn = document.querySelector(".player-two-choice");
 const playerOneChoiceReturn = document.querySelector(".player-one-choice");
 
@@ -48,9 +49,10 @@ function CreateGridArray () {
     }
 }
 
-const gameBoardDataArray = new CreateGridArray().make()
+let gameBoardDataArray = new CreateGridArray().make()
 
 displayBoard = function(currentTurn) {
+    console.log(gameBoardDataArray)
     gridBox.replaceChildren();
     for (let i = 0; i<gameBoardDataArray.length; i++){
         const column = document.createElement("div");
@@ -86,6 +88,16 @@ function markArray(dataIndex, playerTurn) {
     }
 }
 
-
+function resetGame () {
+    resetButton.addEventListener("click", () => {
+        playerOneChoiceReturn.textContent = "";
+        playerTwoChoiceReturn.textContent = "";
+        userAlert.textContent = ""
+        getPlayerChoice()
+        gameBoardDataArray = new CreateGridArray().make()
+        displayBoard()
+    })
+}
+resetGame()
 
 
