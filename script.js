@@ -26,84 +26,45 @@ function returnPlayerChoices (playerOneChoice) {
     }   
 }
 
-
-
-
 function storePlayerChoice (playerOneChoice){
-    console.log(playerOneChoice)
+    // console.log(playerOneChoice)
 }
 
+function CreateGridArray () {
+    this.boardSize = 3,
+    this.board = [],
+    this.make = function () {
+        for (let i = 0; i<this.boardSize; i++){
+            this.board[i] = [];
+            for (let j = 0; j<this.boardSize; j++){
+                this.board[i][j] = null
+            }
+        }
+        return this.board;
+    }
+}
+const gameBoardDataArray = new CreateGridArray().make()
+
+
+    // displayBoard = function(board) {
+    //     for (let i = 0; i<board.length; i++){
+    //         const column = document.createElement("div");
+    //         column.classList.add("column");
+    //         this.gridBox.appendChild(column);
+    //         for (let j = 0; j<board.length; j++){
+    //             const row = document.createElement("div");
+    //             row.classList.add("row");
+    //             column.appendChild(row);
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function MakeBoardDataArray() {
-//     this.boardSize = 3,
-//     this.board = [],
-//     this.make = function () {
-//         for (let i = 0; i<this.boardSize; i++){
-//             this.board[i] = [];
-//             for (let j = 0; j<this.boardSize; j++){
-//                 this.board[i][j] = null
-//             }
-//         }
-//         return this.board;
-//     }
-// }
-// const gameBoardDataArray = new MakeBoardDataArray()
-
-
-
-
-
-
-// function playerCreator(name, side) {
-//     let score = 0;
-//     const getName = () => name;
-//     const winRound = () => {
-//         return score ++;
-//     }
-
-//     return {
-//         talk () {
-//             return `Welcome to the ARENA ${name}, you chose ${side}`
-//         }, winRound, score
-//     } 
-// }
-// const player1 = playerCreator("Richard", "X");
-// const player2 = playerCreator("Cami", "O");
-
-
-
+    //             row.textContent = board[i][j]
+    //             row.dataset.index = `${i},${j}`
+    //             row.addEventListener("click", () => {
+    //                 markArray(row.dataset.index.split(","))
+    //                 markGameBoardDisplay(row,i,j)
+    //             })
 
 
 
@@ -123,25 +84,7 @@ function storePlayerChoice (playerOneChoice){
 // //     }
 
 // //     }
-// //     displayBoard = function(board) {
-// //         for (let i = 0; i<board.length; i++){
-// //             const column = document.createElement("div");
-// //             column.classList.add("column");
-// //             this.gridBox.appendChild(column);
-// //             for (let j = 0; j<board.length; j++){
-// //                 const row = document.createElement("div");
-// //                 row.classList.add("row");
-// //                 column.appendChild(row);
 
-
-
-
-//                 // row.textContent = board[i][j]
-//                 // row.dataset.index = `${i},${j}`
-//                 // row.addEventListener("click", () => {
-//                 //     markArray(row.dataset.index.split(","))
-//                 //     markGameBoardDisplay(row,i,j)
-//                 // })
 
      
 //     // function markArray(datasetIndex) {
