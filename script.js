@@ -1,35 +1,35 @@
 const gridBox = document.querySelector(".grid-box");
+const warning = document.querySelector(".warning");
 const xChoice = document.getElementById("x");
 const oChoice = document.getElementById("o");
 
-JSON.stringify
+
 function getPlayerChoice () {
     xChoice.addEventListener("click", () => {
-        storePlayerChoice("X")
-        returnPlayerChoices("X")
+        warning.textContent =""
+        displayPlayerChoices("X")
+        displayBoard("X")
     });
     oChoice.addEventListener("click", () => {
-        storePlayerChoice("O")
-        returnPlayerChoices("O")
+        warning.textContent =""
+        displayPlayerChoices("O")
+        displayBoard("O")
     });
 }
 getPlayerChoice();
 
-function returnPlayerChoices (playerOneChoice) {
+
+
+function displayPlayerChoices (playerOneChoice) {
     const playerTwoChoiceReturn = document.querySelector(".player-two-choice");
     const playerOneChoiceReturn = document.querySelector(".player-one-choice");
-
     if (playerOneChoice === "X") {
-        playerOneChoiceReturn.textContent = "You Chose X!"
-        playerTwoChoiceReturn.textContent = "Player Two Choice Is Then O!"
+        playerOneChoiceReturn.textContent = "You Chose X!";
+        playerTwoChoiceReturn.textContent = "Player Two Choice Is Then O!";
     }else {
-        playerOneChoiceReturn.textContent = "You Chose O!"
-        playerTwoChoiceReturn.textContent = "Player Two Choice Is Then X!"
+        playerOneChoiceReturn.textContent = "You Chose O!";
+        playerTwoChoiceReturn.textContent = "Player Two Choice Is Then X!";
     }   
-}
-
-function storePlayerChoice (playerOneChoice){
-    // console.log(playerOneChoice)
 }
 
 function CreateGridArray () {
@@ -48,7 +48,7 @@ function CreateGridArray () {
 
 const gameBoardDataArray = new CreateGridArray().make()
 
-displayBoard = function() {
+displayBoard = function(currentTurn) {
     gridBox.replaceChildren();
     for (let i = 0; i<gameBoardDataArray.length; i++){
         const column = document.createElement("div");
@@ -61,7 +61,7 @@ displayBoard = function() {
             row.textContent = gameBoardDataArray[j][i]
             row.dataset.index = `${j},${i}`
             row.addEventListener("click", () => {
-                markArray(row.dataset.index.split(","))
+                markArray(row.dataset.index.split(","), currentTurn)
             })
 
         }
@@ -69,46 +69,19 @@ displayBoard = function() {
 }
 
 displayBoard()
-let playerTurn="player1";
 function markArray(dataIndex, playerTurn) {
-    console.log(dataIndex)
-    if (playerTurn === "player1") {
+    if (playerTurn === "X") {
         gameBoardDataArray[dataIndex[0]][dataIndex[1]] = "X"
-        console.log(gameBoardDataArray)
-    }else {
-        gameBoardDataArray[dataIndex[0]][dataIndex[1]] = "O"
+        displayBoard("O")
 
-        displayBoard()
-        console.log(gameBoardDataArray)
+    }else if (playerTurn=== "O") {
+        gameBoardDataArray[dataIndex[0]][dataIndex[1]] = "O"
+        displayBoard("X")
+    }else {
+        warning.textContent = "Nice try but you need to pick a side first!!"
     }
 }
 
 
-
-
-
-
-// // (function (){
-// //     let boardSize = 3;
-// //     this.playerTurn = "player1"
-// //     cacheDom = function () {
-// //         this.
-// //     }
-
-// //     }
-
-
-     
-
-//     // function markGameBoardDisplay (row,i,j) {
-//     //     row.textContent = board[i][j]
-//     //     this.row = document.querySelectorAll (".row")
-//     //     for (let i = 0; i<row.length; i++){
-//     //         for(let j= 0; j<this.row.length; i++){
-//     //             this.row.textContent = board[i][j]
-//     // }
-//     // cacheDom()
-//     // board = makeBoardGridValues()
-//     // displayBoard(board)
 
 
