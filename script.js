@@ -6,11 +6,23 @@ const resetButton = document.getElementById("reset");
 const playerTwoChoiceReturn = document.querySelector(".player-two-choice");
 const playerOneChoiceReturn = document.querySelector(".player-one-choice");
 
+function CreateGridArray () {
+    this.boardSize = 3,
+    this.board = [],
+    this.make = function () {
+        for (let i = 0; i<this.boardSize; i++){
+            this.board[i] = [];
+            for (let j = 0; j<this.boardSize; j++){
+                this.board[i][j] = null;
+            }
+        }
+        return this.board;
+    }
+}
+let gameBoardDataArray = new CreateGridArray().make()
 
 function getPlayerChoice () {
     xChoice.addEventListener("click", () => {
-
-
         userAlert.textContent =""
         displayPlayerChoices("X")
         displayBoard("X")
@@ -35,24 +47,7 @@ function displayPlayerChoices (playerOneChoice) {
     }   
 }
 
-function CreateGridArray () {
-    this.boardSize = 3,
-    this.board = [],
-    this.make = function () {
-        for (let i = 0; i<this.boardSize; i++){
-            this.board[i] = [];
-            for (let j = 0; j<this.boardSize; j++){
-                this.board[i][j] = null;
-            }
-        }
-        return this.board;
-    }
-}
-
-let gameBoardDataArray = new CreateGridArray().make()
-
-displayBoard = function(currentTurn) {
-    console.log(gameBoardDataArray)
+function displayBoard (currentTurn) {
     gridBox.replaceChildren();
     for (let i = 0; i<gameBoardDataArray.length; i++){
         const column = document.createElement("div");
@@ -67,12 +62,11 @@ displayBoard = function(currentTurn) {
             row.addEventListener("click", () => {
                 markArray(row.dataset.index.split(","), currentTurn)
             })
-
         }
     }
 }
-
 displayBoard()
+
 function markArray(dataIndex, playerTurn) {
     if (gameBoardDataArray[dataIndex[0]][dataIndex[1]] != null) {
         userAlert.textContent = "Pick a spot that is empty bucko!!"
@@ -80,23 +74,46 @@ function markArray(dataIndex, playerTurn) {
         if (playerTurn === "X") {
             gameBoardDataArray[dataIndex[0]][dataIndex[1]] = "X"
             displayBoard("O")
+            checkWinner(gameBoardDataArray, playerTurn)
             userAlert.textContent = "Now its the other Players Turn, pick a square for O"
     
         }else if (playerTurn=== "O") {
             gameBoardDataArray[dataIndex[0]][dataIndex[1]] = "O"
             displayBoard("X")
+            checkWinner(gameBoardDataArray, playerTurn)
             userAlert.textContent = "Now its the other Players Turn, pick a square for X"
         }else {
             userAlert.textContent = "Nice try but you need to pick a side first!!"
         }
     }
+}
 
-
+function checkWinner (a, playerTurn) {
 }
 
 
+        // if (a[0][0] === "X" && a[1][0] === "X" && a[2][0] === "X"){
+        //     console.log("Hi")
+        // }else if(a[0][1] === "X" && a[1][1] === "X" && a[2][1] === "X"){
+        //     console.log("Hi")
+        // }else if(a[0][2] === "X" && a[1][2] === "X" && a[2][2] === "X"){
+        //     console.log("Hi")
+        // }else if(a[0][0] === "X" && a[0][1] === "X" && a[0][2] === "X"){
+        //     console.log("Hi")
+        // }else if(a[1][0] === "X" && a[1][1] === "X" && a[1][2] === "X"){
+        //     console.log("Hi")
+        // }else if(a[2][0] === "X" && a[2][1] === "X" && a[2][2] === "X"){
+        //     console.log("Hi")
 
 
+//         }else if(a[0][0] === "X" && a[1][1] === "X" && a[2][2] === "X"){
+//             console.log("Hi")
+//         }else if(a[0][2] === "X" && a[1][1] === "X" && a[2][0] === "X"){
+//             console.log("Hi")
+//         }
+//     }
+
+// }
 
 
 
@@ -111,6 +128,7 @@ function resetGame () {
         getPlayerChoice()
         gameBoardDataArray = new CreateGridArray().make()
         displayBoard()
+        turnArr= [];
     })
 }
 resetGame()
