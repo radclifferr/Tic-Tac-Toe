@@ -1,34 +1,36 @@
 const gridBox = document.querySelector(".grid-box");
-const warning = document.querySelector(".warning");
+const userAlert = document.querySelector(".alert");
 const xChoice = document.getElementById("x");
 const oChoice = document.getElementById("o");
+const playerTwoChoiceReturn = document.querySelector(".player-two-choice");
+const playerOneChoiceReturn = document.querySelector(".player-one-choice");
 
 
 function getPlayerChoice () {
     xChoice.addEventListener("click", () => {
-        warning.textContent =""
+
+
+        userAlert.textContent =""
         displayPlayerChoices("X")
         displayBoard("X")
     });
     oChoice.addEventListener("click", () => {
-        warning.textContent =""
+        userAlert.textContent =""
         displayPlayerChoices("O")
         displayBoard("O")
     });
 }
 getPlayerChoice();
 
-
-
 function displayPlayerChoices (playerOneChoice) {
-    const playerTwoChoiceReturn = document.querySelector(".player-two-choice");
-    const playerOneChoiceReturn = document.querySelector(".player-one-choice");
     if (playerOneChoice === "X") {
         playerOneChoiceReturn.textContent = "You Chose X!";
-        playerTwoChoiceReturn.textContent = "Player Two Choice Is Then O!";
+        playerTwoChoiceReturn.textContent = "Player Two Is O!";
+        userAlert.textContent = "Player one goes first! Pick a square!"
     }else {
         playerOneChoiceReturn.textContent = "You Chose O!";
-        playerTwoChoiceReturn.textContent = "Player Two Choice Is Then X!";
+        playerTwoChoiceReturn.textContent = "Player Two Is X!";
+        userAlert.textContent = "Player one goes first! Pick a square!"
     }   
 }
 
@@ -73,12 +75,14 @@ function markArray(dataIndex, playerTurn) {
     if (playerTurn === "X") {
         gameBoardDataArray[dataIndex[0]][dataIndex[1]] = "X"
         displayBoard("O")
+        userAlert.textContent = "Now its the other Players Turn, pick a square for O"
 
     }else if (playerTurn=== "O") {
         gameBoardDataArray[dataIndex[0]][dataIndex[1]] = "O"
         displayBoard("X")
+        userAlert.textContent = "Now its the other Players Turn, pick a square for X"
     }else {
-        warning.textContent = "Nice try but you need to pick a side first!!"
+        userAlert.textContent = "Nice try but you need to pick a side first!!"
     }
 }
 
