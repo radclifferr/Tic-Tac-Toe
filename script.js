@@ -74,19 +74,34 @@ displayBoard = function(currentTurn) {
 
 displayBoard()
 function markArray(dataIndex, playerTurn) {
-    if (playerTurn === "X") {
-        gameBoardDataArray[dataIndex[0]][dataIndex[1]] = "X"
-        displayBoard("O")
-        userAlert.textContent = "Now its the other Players Turn, pick a square for O"
-
-    }else if (playerTurn=== "O") {
-        gameBoardDataArray[dataIndex[0]][dataIndex[1]] = "O"
-        displayBoard("X")
-        userAlert.textContent = "Now its the other Players Turn, pick a square for X"
+    if (gameBoardDataArray[dataIndex[0]][dataIndex[1]] != null) {
+        userAlert.textContent = "Pick a spot that is empty bucko!!"
     }else {
-        userAlert.textContent = "Nice try but you need to pick a side first!!"
+        if (playerTurn === "X") {
+            gameBoardDataArray[dataIndex[0]][dataIndex[1]] = "X"
+            displayBoard("O")
+            userAlert.textContent = "Now its the other Players Turn, pick a square for O"
+    
+        }else if (playerTurn=== "O") {
+            gameBoardDataArray[dataIndex[0]][dataIndex[1]] = "O"
+            displayBoard("X")
+            userAlert.textContent = "Now its the other Players Turn, pick a square for X"
+        }else {
+            userAlert.textContent = "Nice try but you need to pick a side first!!"
+        }
     }
+
+
 }
+
+
+
+
+
+
+
+
+
 
 function resetGame () {
     resetButton.addEventListener("click", () => {
