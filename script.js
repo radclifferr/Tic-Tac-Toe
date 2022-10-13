@@ -124,6 +124,8 @@ function checkWinner (g, playerTurn) {
         console.log("player1 wins!")
     }else if (g[0] + g[4] + g[8] === 12 || g[2] + g[4] + g[6] === 12){
         console.log("player2 Wins!")
+    }if (tieGame(g) === 21) {
+        console.log("Tie Game!")
     }
 }
 function resetGame () {
@@ -140,3 +142,10 @@ function resetGame () {
 resetGame()
 
 
+function tieGame(array) {
+    let arraySum = 0;
+    for(let i=0; i < array.length; i++){
+        arraySum += array[i];
+    }
+    return arraySum;
+}
