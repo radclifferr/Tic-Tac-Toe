@@ -1,26 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+:root {
+    --text-background:rgba(0,0,0,.75);
+    --text-border-radius: 10px;
+    --text-padding: 10px;
+}
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    font-family: 'Silkscreen', sans-serif;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns:1fr 3fr 2fr 1fr;
+    justify-items: center;
     height: 100vh;
     padding: 0;
     margin: 0;
+    background-image: linear-gradient(45deg, rgb(74, 0, 109), rgb(255, 145, 0));
+    color: white;
+}
+.game-board {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 150px;
+}
+body >div> h1 {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    background-color: rgba(0,0,0,.75);
+    border-radius: 10px;
+}
+body> div>h1 >div {
+    padding: 10px;
+}
+body>div > h2 {
+    padding: var(--text-padding);
+    background-color: var(--text-background);
+    border-radius: var(--text-border-radius);
+}
+.buttons {
+    font-size: 1.5rem;
+    background-color: var(--text-background);
+    border-radius: var(--text-border-radius);
+    transition-duration: 0.15s;
 }
 button {
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     margin: 10px;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    font-family: inherit;
+}
+button:hover {
+    transform: scale(1.1);
+}
+button:active {
+    transform: scale(.85);
+}
+.user-notifications{
+    grid-column: 3;
+    max-width: 400px;
+    align-self: start;
+    justify-self: start;
+}
+.player-one-choice,
+.player-two-choice {
+    background-color: var(--text-background);
+    border-radius: var(--text-border-radius);
+    font-size: 1.5rem;
+    margin-top: 10px;
 }
 .grid-box {
     display: flex;
     gap: 5px;
-    background-color: black;
+    background-color: black; 
 }
 .column {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    
+    gap: 5px; 
 }
 .row {
     height: 100px;
@@ -29,11 +91,16 @@ button {
     background-color: white;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 5rem;
+    color: black;
 }
+.alert{
+    background-color: var(--text-background);
+    border-radius: var(--text-border-radius);
 
-
-
+    font-size: 1.5rem;
+    margin-top: 150px;
+}
 .modal {
     width: 100%;
     height: 100%;
@@ -41,27 +108,26 @@ button {
     display: none;
     background-color: rgb(0,0,0,0.4);
     animation-name: fadeIn;
-    animation-duration: 0.4s;
+    animation-duration: 0.5s;
 }
 .winner-box {
     height: 200px; 
     width: 400px;
     font-size: 1.25rem;
-    background-color: white;
+    background-color: rgb(38, 0, 255);
     border-radius: 10px;
     border: 2px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-
 }
 .winner-modal {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 @keyframes fadeIn {
     from {opacity: 0} 

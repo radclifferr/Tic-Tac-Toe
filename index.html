@@ -9,22 +9,28 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div>Player 1! Select Your Choice!  "X" or "O"!!!</div>
-    <div>
-        <button id="x">X</button>
-        <button id="o">O</button>
+    <div class="game-board">
+        <h1><div>Tic</div><div>Tac</div><div>Toe</div></h1>
+        <h2>Player 1! Select Your Choice!</h2>
+        <div class="buttons">
+            <button id="x">X</button>
+            or
+            <button id="o">O</button>
+        </div>
+        <div class="grid-box"></div>
+        <button class="reset">Reset!</button>
     </div>
-    <div class="player-one-choice"></div>
-    <div class="player-two-choice"></div>
-    <div class="grid-box"></div>
-    <div class="alert"></div>
+    <div class="user-notifications">
+        <div class="player-one-choice"></div>
+        <div class="player-two-choice"></div>
+        <div class="alert"></div>
+    </div>
     <div class="modal">
         <div class="winner-box">
             <div class="winner-text"></div>
             <button class="reset">Play Again!</button>
-            
         </div>
     </div>
-    <button class="reset">Reset!</button>
+    
 </body>
 </html>
