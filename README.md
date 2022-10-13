@@ -5,10 +5,10 @@
 A Tic-Tac-Toe game using the following skillsets
 * Javascript
 * Immediately invoked anonymous functions to eliminate pollution of global scope
-* Class instantiation / Creating Objects
+* Class instantiation / Creating Objects to cache the DOM and other variables
 * CSS variables for global styling
 * CSS Pseudo-classes for hover and click transition events
-* 
+
 
 
 
