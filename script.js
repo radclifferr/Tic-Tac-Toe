@@ -2,9 +2,11 @@ const gridBox = document.querySelector(".grid-box");
 const userAlert = document.querySelector(".alert");
 const xChoice = document.getElementById("x");
 const oChoice = document.getElementById("o");
-const resetButton = document.getElementById("reset");
+const resetButton = document.querySelectorAll(".reset");
 const playerTwoChoiceReturn = document.querySelector(".player-two-choice");
 const playerOneChoiceReturn = document.querySelector(".player-one-choice");
+const winnerModal = document.querySelector(".modal");
+const winnerText = document.querySelector(".winner-text");
 
 function CreateGridArray () {
     this.boardSize = 3,
@@ -110,36 +112,37 @@ function checkWinner (g, playerTurn) {
     }
     //Vertical Winning
     if (g[0] + g[3] + g[6] === 3 || g[1] + g[4] + g[7] === 3 || g[2] + g[5] + g[8] === 3) {
-
-        console.log("player1 wins!")
+        alertWinner("Player 1")
     }else if (g[0] + g[3] + g[6] === 12 || g[1] + g[4] + g[7] === 12 || g[2] + g[5] + g[8] === 12){
-        console.log("player2 Wins!")
+        alertWinner("Player 2")
     //Horizontal Winning
     }if (g[0] + g[1] + g[2] === 3 || g[3] + g[4] + g[5] === 3 || g[6] + g[7] + g[8] === 3) {
-        console.log("player1 wins!")
+        alertWinner("Player 1")
     }else if (g[0] + g[1] + g[2] === 12 || g[3] + g[4] + g[5] === 12 || g[6] + g[7] + g[8] === 12){
-        console.log("player2 Wins!")
+        alertWinner("Player 2")
     //Lateral Winning
     }if (g[0] + g[4] + g[8] === 3 || g[2] + g[4] + g[6] === 3) {
-        console.log("player1 wins!")
+        alertWinner("Player 1")
     }else if (g[0] + g[4] + g[8] === 12 || g[2] + g[4] + g[6] === 12){
-        console.log("player2 Wins!")
-    }if (tieGame(g) === 21) {
-        console.log("Tie Game!")
+        alertWinner("Player 2")
+    }else if (tieGame(g) === 21) {
+        alertWinner("Tie Game")
     }
 }
-function resetGame () {
-    resetButton.addEventListener("click", () => {
-        playerOneChoiceReturn.textContent = "";
-        playerTwoChoiceReturn.textContent = "";
-        userAlert.textContent = ""
-        getPlayerChoice()
-        gameBoardDataArray = new CreateGridArray().make()
-        displayBoard()
-        turnArr= [];
-    })
+function resetGameButton () {
+    resetButton.forEach(button =>
+        button.addEventListener("click", () => {
+            winnerModal.classList.remove("winner-modal");
+            playerOneChoiceReturn.textContent = "";
+            playerTwoChoiceReturn.textContent = "";
+            userAlert.textContent = ""
+            getPlayerChoice()
+            gameBoardDataArray = new CreateGridArray().make()
+            displayBoard()
+            turnArr= [];
+        }));
 }
-resetGame()
+resetGameButton()
 
 
 function tieGame(array) {
@@ -148,4 +151,14 @@ function tieGame(array) {
         arraySum += array[i];
     }
     return arraySum;
+}
+
+function alertWinner(winner) {
+    winnerModal.classList.add("winner-modal");
+    if(winner === "Player 1" || winner === "Player 2"){
+        winnerText.textContent = `${winner} won the game! Right On!`;
+    }else {
+        winnerText.textContent = `${winner}`
+    }
+    
 }
