@@ -14,4 +14,4 @@ A Tic-Tac-Toe game using the following skillsets
 
 ## Demo
 ### Live: [Here](https://radclifferr.github.io/Tic-Tac-Toe/)
-![Preview](images/tic-tac-toe.jpg)
+![Preview](images/tic-tac-toe.JPG)
