@@ -87,39 +87,45 @@ function markArray(dataIndex, playerTurn) {
         }
     }
 }
+let turnArr=[]
+function checkWinner (g, playerTurn) {
+    g = g.flat();
+    turnArr.push(playerTurn)
+    if (turnArr[0] === "X"){
+        for (let i=0; i < g.length ; i++){
+            if (g[i] === "X"){
+                g[i] = 1;
+            }if (g[i] ==="O"){
+                g[i] = 4;
+            } 
+        }
+    }else if (turnArr[0] === "O"){
+        for (let i=0; i < g.length ; i++){
+            if (g[i] === "X"){
+                g[i] = 4;
+            }if (g[i] ==="O"){
+                g[i] = 1;
+            } 
+        }
+    }
+    //Vertical Winning
+    if (g[0] + g[3] + g[6] === 3 || g[1] + g[4] + g[7] === 3 || g[2] + g[5] + g[8] === 3) {
 
-function checkWinner (a, playerTurn) {
+        console.log("player1 wins!")
+    }else if (g[0] + g[3] + g[6] === 12 || g[1] + g[4] + g[7] === 12 || g[2] + g[5] + g[8] === 12){
+        console.log("player2 Wins!")
+    //Horizontal Winning
+    }if (g[0] + g[1] + g[2] === 3 || g[3] + g[4] + g[5] === 3 || g[6] + g[7] + g[8] === 3) {
+        console.log("player1 wins!")
+    }else if (g[0] + g[1] + g[2] === 12 || g[3] + g[4] + g[5] === 12 || g[6] + g[7] + g[8] === 12){
+        console.log("player2 Wins!")
+    //Lateral Winning
+    }if (g[0] + g[4] + g[8] === 3 || g[2] + g[4] + g[6] === 3) {
+        console.log("player1 wins!")
+    }else if (g[0] + g[4] + g[8] === 12 || g[2] + g[4] + g[6] === 12){
+        console.log("player2 Wins!")
+    }
 }
-
-
-        // if (a[0][0] === "X" && a[1][0] === "X" && a[2][0] === "X"){
-        //     console.log("Hi")
-        // }else if(a[0][1] === "X" && a[1][1] === "X" && a[2][1] === "X"){
-        //     console.log("Hi")
-        // }else if(a[0][2] === "X" && a[1][2] === "X" && a[2][2] === "X"){
-        //     console.log("Hi")
-        // }else if(a[0][0] === "X" && a[0][1] === "X" && a[0][2] === "X"){
-        //     console.log("Hi")
-        // }else if(a[1][0] === "X" && a[1][1] === "X" && a[1][2] === "X"){
-        //     console.log("Hi")
-        // }else if(a[2][0] === "X" && a[2][1] === "X" && a[2][2] === "X"){
-        //     console.log("Hi")
-
-
-//         }else if(a[0][0] === "X" && a[1][1] === "X" && a[2][2] === "X"){
-//             console.log("Hi")
-//         }else if(a[0][2] === "X" && a[1][1] === "X" && a[2][0] === "X"){
-//             console.log("Hi")
-//         }
-//     }
-
-// }
-
-
-
-
-
-
 function resetGame () {
     resetButton.addEventListener("click", () => {
         playerOneChoiceReturn.textContent = "";
